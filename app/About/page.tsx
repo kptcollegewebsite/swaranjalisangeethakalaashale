@@ -1,6 +1,6 @@
 "use client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { FaMusic, FaGraduationCap, FaAward, FaTheaterMasks, FaMicrophone, FaHandsHelping } from "react-icons/fa";
+import { FaMusic, FaAward, FaTheaterMasks, FaMicrophone, FaHandsHelping } from "react-icons/fa";
 import { MdSchool } from "react-icons/md";
 import Image from "next/image";
 
@@ -11,7 +11,7 @@ export default function AboutUs() {
         <div className="text-center w-full mb-10">
           <h2 className="text-xl text-indigo-500 tracking-widest font-medium">ABOUT OUR ACADEMY</h2>
           <p className="lg:w-2/3 mx-auto text-base mt-4">
-            At Swaranjali Sangeetha Kalaa Shaale, we believe that music is a sacred art that connects hearts and preserves cultural heritage. Music is not just an art; it’s a way of life. At Swaranjali Sangeetha School, we are committed to nurturing talent and spreading the rich heritage of Indian classical music. Whether you're a beginner or an advanced learner, our structured courses and personalized training will help you master the nuances of melody, rhythm, and expression.
+            At Swaranjali Sangeetha Kalaa Shaale, we believe that music is a sacred art that connects hearts and preserves cultural heritage. Music is not just an art; it’s a way of life. At Swaranjali Sangeetha School, we are committed to nurturing talent and spreading the rich heritage of Indian classical music. Whether you are a beginner or an advanced learner, our structured courses and personalized training will help you master the nuances of melody, rhythm, and expression.
           </p>
           <h1 className="sm:text-3xl text-2xl font-medium text-gray-900 mb-4 dark:text-gray-100">🎶Music is the language of the soul – Let’s learn, create, and celebrate together!</h1>
         </div>
@@ -77,7 +77,8 @@ export default function AboutUs() {
 
             <div className="flex items-center space-x-4 mt-4">
               <FaAward className="text-yellow-500 text-2xl" />
-              <p className=" text-justify"><strong>Honored with the title "Vidushi"</strong> in 2024 for contributions to classical music.</p>
+              <p className="text-justify">Honored with the title <strong>`Vidushi`</strong> in 2024 for contributions to classical music.</p>
+
             </div>
 
             <div className="flex items-center space-x-4 mt-4">

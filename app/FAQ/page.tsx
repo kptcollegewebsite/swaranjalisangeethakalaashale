@@ -1,25 +1,8 @@
 "use client"; // Ensure it runs only on the client (fixes hydration issue if needed)
 
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
-import { useEffect, useState } from "react";
 
 function FAQ() {
-  const [isDarkMode, setIsDarkMode] = useState(false);
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const darkModeMediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-      setIsDarkMode(darkModeMediaQuery.matches);
-
-      darkModeMediaQuery.addEventListener('change', (e) => {
-        setIsDarkMode(e.matches);
-      });
-
-      return () => {
-        darkModeMediaQuery.removeEventListener('change', () => { });
-      };
-    }
-  }, []);
 
   const faqs = [
     {
