@@ -2,33 +2,20 @@
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import React, { useState } from 'react';
-import { toast } from 'react-hot-toast';
+import { ToastContainer, toast } from 'react-toastify';
 
 function Contact() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [message, setMessage] = useState('');
 
-  const handleSendMail = async () => {
-    try {
-      const response = await fetch('/api/sendMail', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, message }),
-      });
-
-      if (response.ok) {
-        toast.success('Mail sent successfully!');
-        setName('');
-        setEmail('');
-        setMessage('');
-      } else {
-        toast.error('Failed to send mail. Please try again.');
-      }
-    } catch (error) {
-      toast.error(error.message || 'An error occurred while sending the mail.');
-    }
+  const handleSendMail = () => {
+    // toast.success('Mail sent successfully!', {
+    //   position: "top-right",
+    //   autoClose: 3000, // Closes toast after 3 seconds
+    //   hideProgressBar: false,
+    //   closeOnClick: true,
+    //   pauseOnHover: true,
+    //   draggable: true,
+    //   theme: "light",
+    // });
   };
 
   return (
@@ -53,32 +40,29 @@ function Contact() {
             <Input
               placeholder="Your Name"
               className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-md"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
               required
             />
             <Input
               type="email"
               placeholder="Your Email"
               className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-md"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
               required
             />
             <Textarea
               placeholder="Your Message"
               className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-md"
               rows={4}
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
               required
             />
-            <Button className="w-full" onClick={handleSendMail}>
+            <Button type="button" className="w-full cursor-pointer" onClick={handleSendMail}>
               Send Message
             </Button>
           </form>
         </div>
       </div>
+
+      {/* ToastContainer should be outside the form */}
+      <ToastContainer />
     </div>
   );
 }
