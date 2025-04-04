@@ -1,6 +1,7 @@
 "use client";
 
 import { useParams } from "next/navigation";
+import Image from "next/image"; // ✅ Import next/image
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -24,15 +25,26 @@ const programDetails = {
     description: "A mesmerizing night of classical music performances.",
     images: ["/images/classical1.jpg", "/images/classical2.jpg"],
   },
-};
+} as const; // Keeps keys strictly as `1 | 2 | 3`
 
 export default function ProgramDetails() {
   const params = useParams();
-  const program = programDetails[params.id as keyof typeof programDetails];
 
-  if (!program) {
+  // Ensure params.id exists
+  if (!params?.id) {
     return <p className="text-center text-red-500">Program not found</p>;
   }
+
+  // Convert params.id to a number
+  const programId = Number(params.id);
+
+  // Validate if programId is a valid key in programDetails
+  if (!(programId in programDetails)) {
+    return <p className="text-center text-red-500">Program not found</p>;
+  }
+
+  // Now, TypeScript knows programId is strictly 1 | 2 | 3
+  const program = programDetails[programId as 1 | 2 | 3];
 
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 p-10">
@@ -45,7 +57,14 @@ export default function ProgramDetails() {
           <p className="text-lg">{program.description}</p>
           <div className="grid grid-cols-2 gap-4 mt-4">
             {program.images.map((img, index) => (
-              <img key={index} src={img} alt={program.name} className="w-full h-40 object-cover rounded-lg" />
+              <Image
+                key={index}
+                src={img}
+                alt={program.name}
+                width={300} // Adjust as needed
+                height={200} // Adjust as needed
+                className="w-full h-40 object-cover rounded-lg"
+              />
             ))}
           </div>
           <div className="text-center mt-4">
