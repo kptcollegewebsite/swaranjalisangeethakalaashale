@@ -5,13 +5,13 @@ import Gallery from "./gallery/page";
 import Schedule from "./schedule/page";
 import Contact from "./contact/page";
 import Navbar from "./Navbar/page";
-import Herosection from "./herosection/page";
 import AboutUs from "./About/page";
 import Course from "./Course/page";
 import Achievers from "./Achievers/page";
 import FAQ from "./FAQ/page";
 import TestimonialCarousel from "./Testimonials/page";
 import Footer from "./footer/page";
+import Herosection from "./Herosection/page";
 
 export default function Home() {
   return (
