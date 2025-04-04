@@ -1,3 +1,5 @@
+"use client";
+
 import * as React from "react";
 import Autoplay from "embla-carousel-autoplay";
 import Image from "next/image";
@@ -10,9 +12,7 @@ import {
 } from "@/components/ui/carousel";
 
 function Herosection() {
-  const plugin = React.useRef(
-    Autoplay({ delay: 2000, stopOnInteraction: true })
-  );
+  const plugin = React.useMemo(() => Autoplay({ delay: 2000, stopOnInteraction: true }), []);
 
   const slides = [
     {
@@ -47,20 +47,17 @@ function Herosection() {
     },
   ];
 
-  // Function to display message when "Enroll Now" is clicked
   const handleEnrollClick = () => {
-    alert(
-      "For registration and enrollment, please contact: +91 99023 39387."
-    );
+    alert("For registration and enrollment, please contact: +91 99023 39387.");
   };
 
   return (
     <div className="w-full relative">
       <Carousel
-        plugins={[plugin.current]}
+        plugins={[plugin]}
         className="w-full"
-        onMouseEnter={plugin.current.stop}
-        onMouseLeave={plugin.current.reset}
+        onMouseEnter={plugin.stop}
+        onMouseLeave={plugin.reset}
       >
         <CarouselContent>
           {slides.map((slide, index) => (
@@ -81,7 +78,7 @@ function Herosection() {
                 </p>
                 <div className="flex justify-center md:justify-start">
                   <button
-                    onClick={handleEnrollClick} // Added click event
+                    onClick={handleEnrollClick}
                     className="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg"
                   >
                     {slide.btn1}
@@ -97,10 +94,8 @@ function Herosection() {
                 <Image
                   src={slide.imageSrc}
                   alt={`Slide image ${index + 1}`}
-                  layout="responsive"
                   width={720}
                   height={600}
-                  objectFit="cover"
                   className="rounded-lg"
                   priority
                 />
