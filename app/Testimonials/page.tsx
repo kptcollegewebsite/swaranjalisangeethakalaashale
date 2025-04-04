@@ -38,7 +38,7 @@ const testimonials = [
   },
 ];
 
-export function TestimonialCarousel() {
+function TestimonialCarousel() {
   const plugin = React.useRef(
     Autoplay({ delay: 3000, stopOnInteraction: true })
   );
