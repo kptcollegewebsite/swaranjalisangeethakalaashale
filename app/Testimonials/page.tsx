@@ -1,3 +1,5 @@
+"use client"; // Ensure this is at the top
+
 import * as React from "react";
 import Autoplay from "embla-carousel-autoplay";
 import {
@@ -39,9 +41,7 @@ const testimonials = [
 ];
 
 function TestimonialCarousel() {
-  const plugin = React.useRef(
-    Autoplay({ delay: 3000, stopOnInteraction: true })
-  );
+  const plugin = React.useMemo(() => Autoplay({ delay: 3000, stopOnInteraction: true }), []);
 
   return (
     <section className="p-6 bg-gray-100 dark:bg-gray-900 shadow-md rounded-lg max-w-6xl mx-auto mt-10">
@@ -49,10 +49,10 @@ function TestimonialCarousel() {
         What Our Students Say
       </h2>
       <Carousel
-        plugins={[plugin.current]}
+        plugins={[plugin]}
         className="w-full max-w-5xl mx-auto mt-6"
-        onMouseEnter={plugin.current.stop}
-        onMouseLeave={plugin.current.reset}
+        onMouseEnter={plugin.stop}
+        onMouseLeave={plugin.reset}
       >
         <CarouselContent>
           {testimonials.map((testimonial, index) => (
@@ -76,7 +76,7 @@ function TestimonialCarousel() {
           ))}
         </CarouselContent>
         <CarouselPrevious className="absolute top-1/2 -translate-y-1/2 bg-white/70 dark:bg-black/50 p-2 rounded-full shadow-md" />
-        <CarouselNext className="absolute  top-1/2 -translate-y-1/2 bg-white/70 dark:bg-black/50 p-2 rounded-full shadow-md" />
+        <CarouselNext className="absolute top-1/2 -translate-y-1/2 bg-white/70 dark:bg-black/50 p-2 rounded-full shadow-md" />
       </Carousel>
     </section>
   );
